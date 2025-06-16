@@ -6,8 +6,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libnsl2 \
     && rm -rf /var/lib/apt/lists/*
 
-groupadd docker
-sudo usermod -aG docker $USER
+RUN groupadd docker
+RUN sudo usermod -aG docker $USER
 
 LABEL maintainer="Jörg Klein <kwp.klein@gmail.com>"
 
