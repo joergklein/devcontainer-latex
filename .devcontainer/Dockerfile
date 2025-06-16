@@ -2,8 +2,8 @@
 FROM mcr.microsoft.com/devcontainers/base:ubuntu
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    inkscape \
-    libnsl2 \
+ #  inkscape \
+ #  libnsl2 \
     && rm -rf /var/lib/apt/lists/*
 
 LABEL maintainer="Jörg Klein <kwp.klein@gmail.com>"
