@@ -6,6 +6,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libnsl2 \
     && rm -rf /var/lib/apt/lists/*
 
+RUN groupadd -r coder && useradd -m -r -g coder coder
+USER coder
+
 LABEL maintainer="Jörg Klein <kwp.klein@gmail.com>"
 
 # Install texlive
