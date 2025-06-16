@@ -25,8 +25,9 @@ RUN tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcon
     && curl -fsSL https://www.preining.info/rsa.asc | tlmgr key add -
 RUN luaotfload-tool -v -vvv -u
 
+USER bro
 ENV HOME /home/workspace
 WORKDIR /workspace
 VOLUME ["/workspace"]
 
-CMD ["bash"]
+CMD ["/bin/bash", "-c"]
