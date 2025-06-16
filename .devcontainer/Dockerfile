@@ -11,8 +11,7 @@ ARG UNAME=testuser
 ARG UID=1000
 ARG GID=1000
 RUN groupadd -g $GID -o $UNAME
-RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
-USER $UNAME
+RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME \
     # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
     && echo $USNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$UNAME \
     && chmod 0440 /etc/sudoers.d/$UNAME
