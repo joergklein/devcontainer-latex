@@ -1,5 +1,5 @@
 # TeX Live base image
-FROM docker pull mcr.microsoft.com/devcontainers/base:latest
+FROM mcr.microsoft.com/devcontainers/base:latest
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     inkscape \
