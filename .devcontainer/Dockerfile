@@ -4,18 +4,14 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu
 RUN apt-get update && apt-get install -y --no-install-recommends \
     inkscape \
     libnsl2 \
+    qemu-user-static \
     && rm -rf /var/lib/apt/lists/*
 
 LABEL maintainer="Jörg Klein <kwp.klein@gmail.com>"
 
-ARG USERNAME=latex
-ARG USER_UID=1000
-ARG USER_GID=$USER_UID
-
-# Create the user
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-
+#add-apt-repository ppa:canonical-server/server-backports
+#apt-get update
+#apt-get upgrade qemu-user-static
 
 # Install texlive
 COPY texlive.profile .
