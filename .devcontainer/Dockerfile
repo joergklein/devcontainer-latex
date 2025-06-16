@@ -7,16 +7,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     && rm -rf /var/lib/apt/lists/*
 
-ARG UID
-ARG GID
-
-# Update the package list, install sudo, create a non-root user, and grant password-less sudo permissions
-RUN addgroup --gid $GID joerg && \
-    adduser --uid $UID --gid $GID --disabled-password --gecos "" joerg && \
-    echo 'joerg ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
-
-# Set the non-root user as the default user
-USER joerg
+ARG UNAME=testuser
+ARG UID=1000
+ARG GID=1000
+RUN groupadd -g $GID -o $UNAME
+RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
+USER $UNAME
+    # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
+    && echo $USNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$UNAME \
+    && chmod 0440 /etc/sudoers.d/$UNAME
+# [Optional] Set the default user. Omit if you want to keep the default as root.
+USER $UNAME
 
 LABEL maintainer="Jörg Klein <kwp.klein@gmail.com>"
 
