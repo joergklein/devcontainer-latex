@@ -11,12 +11,12 @@ ARG UID
 ARG GID
 
 # Update the package list, install sudo, create a non-root user, and grant password-less sudo permissions
-RUN addgroup --gid $GID nonroot && \
-    adduser --uid $UID --gid $GID --disabled-password --gecos "" nonroot && \
-    echo 'nonroot ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+RUN addgroup --gid $GID joerg && \
+    adduser --uid $UID --gid $GID --disabled-password --gecos "" joerg && \
+    echo 'joerg ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Set the non-root user as the default user
-USER nonroot
+USER joerg
 
 LABEL maintainer="Jörg Klein <kwp.klein@gmail.com>"
 
