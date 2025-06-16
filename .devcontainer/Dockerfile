@@ -1,17 +1,12 @@
 # TeX Live base image
-FROM mcr.microsoft.com/devcontainers/base:ubuntu
+FROM docker pull mcr.microsoft.com/devcontainers/base:latest
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     inkscape \
     libnsl2 \
-    qemu-user-static \
     && rm -rf /var/lib/apt/lists/*
 
 LABEL maintainer="Jörg Klein <kwp.klein@gmail.com>"
-
-#add-apt-repository ppa:canonical-server/server-backports
-#apt-get update
-#apt-get upgrade qemu-user-static
 
 # Install texlive
 COPY texlive.profile .
