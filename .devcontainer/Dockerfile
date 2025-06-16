@@ -20,7 +20,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
-USER $USERNAME
+# USER $USERNAME
 
 LABEL maintainer="Jörg Klein <kwp.klein@gmail.com>"
 
