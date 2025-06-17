@@ -19,11 +19,12 @@ ENV PATH="/usr/local/texlive/2025/bin/armhf-linux:$PATH"
 
 # Update tlmgr and tex-packages
 # RUN tlmgr update --self --all
-RUN tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcontrib \
-    && tlmgr pinning add tlcontrib "*" \
-    && tlmgr install notocondensed \
-    && curl -fsSL https://www.preining.info/rsa.asc | tlmgr key add -
-RUN luaotfload-tool -v -vvv -u
+# RUN tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcontrib \
+#     && tlmgr pinning add tlcontrib "*" \
+#     && tlmgr install notocondensed \
+#     && curl -fsSL https://www.preining.info/rsa.asc | tlmgr key add -
+# RUN luaotfload-tool -v -vvv -u
 
+WORKDIR /workspace
 
-CMD ["bash", "-c", "while sleep 1000; do :; done"]
+CMD ["bash", "-c", "pwd"]
