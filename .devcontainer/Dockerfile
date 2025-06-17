@@ -13,9 +13,9 @@ RUN tar xvzf install-tl-unx.tar.gz
 RUN ./install-tl-*/install-tl -profile texlive.profile -repository http://ctan.net/systems/texlive/tlnet
 
 # Add texlive to path
-ENV PATH=/usr/local/texlive/2025/bin/x86_64-linux:$PATH
-ENV INFOPATH=/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH
-ENV MANPATH=/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH
+PATH=/usr/local/texlive/2025/bin/x86_64-linux:$PATH; export PATH
+MANPATH=/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH; export MANPATH
+INFOPATH=/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH; export INFOPATH
 
 # Update tlmgr and tex-packages
 # RUN tlmgr update --self --all
@@ -25,6 +25,4 @@ ENV MANPATH=/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH
 #     && curl -fsSL https://www.preining.info/rsa.asc | tlmgr key add -
 # RUN luaotfload-tool -v -vvv -u
 
-WORKDIR /projects
-
-CMD ["bash", "-c", "pwd"]
+CMD ["bash", "-c"]
