@@ -25,6 +25,6 @@ ENV PATH="/usr/local/texlive/2025/bin/armhf-linux:$PATH"
 #     && curl -fsSL https://www.preining.info/rsa.asc | tlmgr key add -
 # RUN luaotfload-tool -v -vvv -u
 
-WORKDIR /workspace
+WORKDIR /projects
 
 CMD ["bash", "-c", "pwd"]
