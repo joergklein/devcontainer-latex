@@ -13,9 +13,9 @@ RUN tar xvzf install-tl-unx.tar.gz
 RUN ./install-tl-*/install-tl -profile texlive.profile -repository http://ctan.net/systems/texlive/tlnet
 
 # Add texlive to path
-PATH=/usr/local/texlive/2025/bin/x86_64-linux:$PATH; export PATH
-MANPATH=/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH; export MANPATH
-INFOPATH=/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH; export INFOPATH
+ENV PATH=/usr/local/texlive/2025/bin/x86_64-linux:$PATH
+ENV MANPATH=/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH
+ENV INFOPATH=/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH
 
 # Update tlmgr and tex-packages
 # RUN tlmgr update --self --all
