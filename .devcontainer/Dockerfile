@@ -4,7 +4,13 @@ FROM mcr.microsoft.com/devcontainers/base:latest
 RUN apt-get update && apt-get install -y --no-install-recommends \
     inkscape \
     libnsl2 \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
+
+ARG USER=coder
+RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
+    && echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
+    && chmod 0440 /etc/sudoers.d/${USER}
 
 # Install texlive
 COPY texlive.profile .
@@ -13,16 +19,22 @@ RUN tar xvzf install-tl-unx.tar.gz
 RUN ./install-tl-*/install-tl -profile texlive.profile -repository http://ctan.net/systems/texlive/tlnet
 
 # Add texlive to path
-ENV PATH=/usr/local/texlive/2025/bin/x86_64-linux:$PATH
-ENV MANPATH=/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH
-ENV INFOPATH=/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH
+ENV PATH="/usr/local/texlive/2025/bin/x86_64-linux:$PATH"
+ENV MANPATH="/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH"
+ENV INFOPATH="/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH"
 
-# Update tlmgr and tex-packages
-# RUN tlmgr update --self --all
-# RUN tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcontrib \
-#     && tlmgr pinning add tlcontrib "*" \
-#     && tlmgr install notocondensed \
-#     && curl -fsSL https://www.preining.info/rsa.asc | tlmgr key add -
-# RUN luaotfload-tool -v -vvv -u
+# Update tmlgr
+RUN tlmgr update --self --all
 
-CMD ["bash", "-c"]
+# Add additional packages from the contrib repository
+RUN tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcontrib \
+    && tlmgr pinning add tlcontrib "*" \
+    && tlmgr install notocondensed \
+    && curl -fsSL https://www.preining.info/rsa.asc | tlmgr key add -
+
+RUN luaotfload-tool -v -vvv -u
+
+USER ${USER}
+WORKDIR /home/${USER}
+
+CMD ["bash"]
