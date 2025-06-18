@@ -34,7 +34,7 @@ ENV INFOPATH="/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH"
 
 # RUN luaotfload-tool -v -vvv -u
 
-USER ${USER}
-WORKDIR /home/${USER}
+# USER ${USER}
+# WORKDIR /home/${USER}
 
 CMD ["bash"]
