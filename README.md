@@ -1,9 +1,11 @@
-## Latex development container for Visual Studio Code / Code-Server
+## Latex development container for VS-Code Desktop/Code-Server in Coder
 
 <h3 align="center"> Help needed! <br/>
 This devcontainer is not production ready!</h3>
 
-## Requirements
+---
+
+### Requirements
 
 - [Docker](https://www.docker.com/products/docker-desktop) installed and running
 - [Docker Compose](https://docs.docker.com/compose/install) installed
