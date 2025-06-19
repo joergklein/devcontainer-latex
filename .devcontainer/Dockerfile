@@ -24,15 +24,15 @@ ENV MANPATH="/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH"
 ENV INFOPATH="/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH"
 
 # Update tlmgr
-# RUN tlmgr update --self --all
+RUN tlmgr update --self --all
 
-# # Add additional packages from the contrib repository
-# RUN tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcontrib \
-#     && tlmgr pinning add tlcontrib "*" \
-#     && tlmgr install notocondensed \
-#     && curl -fsSL https://www.preining.info/rsa.asc | tlmgr key add -
+# Add additional packages from the contrib repository
+RUN tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcontrib \
+    && tlmgr pinning add tlcontrib "*" \
+    && tlmgr install notocondensed \
+    && curl -fsSL https://www.preining.info/rsa.asc | tlmgr key add -
 
-# RUN luaotfload-tool -v -vvv -u
+RUN luaotfload-tool -v -vvv -u
 
 USER ${USER}
 WORKDIR /home/${USER}/workspace
