@@ -34,7 +34,7 @@ RUN tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcon
 
 RUN luaotfload-tool -v -vvv -u
 
-USER coder
-WORKDIR /home
+USER ${USER}
+WORKDIR /home/${USER}
 
 CMD ["bash"]
