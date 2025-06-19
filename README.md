@@ -1,11 +1,20 @@
-## Devcontainer for LaTeX Projects for Visual Studio in Coder
+## Latex development container for Visual Studio Code / Code-Server
+
+<h3 align="center"> Help needed! <br/>
+This devcontainer is not production ready!</h3>
+
+## Requirements
+
+- [Docker](https://www.docker.com/products/docker-desktop) installed and running
+- [Docker Compose](https://docs.docker.com/compose/install) installed
+- [Coder](https://coder.com) installed
 
 ### Quickstart
 
-1. Use the template `Docker (Devcontainer)`
+1. Use the template `Docker (Devcontainer)` in Coder
 1. Clone this repo and install it in Coder
 
-#### Help needed
+### Help needed
 
 1. Please take a look at the Dockerfile and docker-compose.yaml. Are they correct?
 1. Compile some of your LaTeX code. Tables, pictures etc.
