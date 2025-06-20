@@ -38,6 +38,6 @@ RUN luaotfload-tool -v -vvv -u
 # WORKDIR /home/${USER}
 
 USER coder
-WORKDIR /home/coder
+WORKDIR /home/coder/workspace
 
 CMD ["bash"]
