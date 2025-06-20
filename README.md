@@ -21,3 +21,6 @@ This devcontainer is not production ready!</h3>
 1. Please take a look at the Dockerfile and docker-compose.yaml. Are they correct?
 1. Compile some of your LaTeX code. Tables, pictures etc.
 1. Send my your experience with this devcontainer
+
+
+https://medium.com/@kombustor/vs-code-docker-latex-setup-f84128c6f790

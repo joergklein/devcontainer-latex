@@ -12,6 +12,16 @@ RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
     && echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
     && chmod 0440 /etc/sudoers.d/${USER}
 
+# generating locales
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8 LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+# installing cpanm & missing latexindent dependencies
+RUN curl -L http://cpanmin.us | perl - --self-upgrade && \
+    cpanm Log::Dispatch::File YAML::Tiny File::HomeDir
+
 # Install texlive
 COPY texlive.profile .
 RUN wget http://ctan.net/systems/texlive/tlnet/install-tl-unx.tar.gz
