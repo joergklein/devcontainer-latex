@@ -7,6 +7,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     && rm -rf /var/lib/apt/lists/*
 
+    # installing cpanm & missing latexindent dependencies
+RUN curl -L http://cpanmin.us | perl - --self-upgrade && \
+    cpanm Log::Dispatch::File YAML::Tiny File::HomeDir
+
 ARG USER=coder
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
     && echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
