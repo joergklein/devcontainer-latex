@@ -10,6 +10,5 @@
         "james-yu.latex-workshop"
       ]
     }
-  },
-  "postCreateCommand": "sed -i 's/\r$//' .devcontainer/misc/*.sh;sh .devcontainer/misc/initialize.sh"
+  }
 }
