@@ -12,10 +12,6 @@ RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
     && echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
     && chmod 0440 /etc/sudoers.d/${USER}
 
-# installing cpanm & missing latexindent dependencies
-RUN sudo curl -L http://cpanmin.us | perl - --self-upgrade \
-    && cpanm Log::Dispatch::File YAML::Tiny File::HomeDir
-
 # Install texlive
 COPY texlive.profile .
 RUN wget http://ctan.net/systems/texlive/tlnet/install-tl-unx.tar.gz
@@ -37,6 +33,10 @@ RUN tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcon
     && sudo curl -fsSL https://www.preining.info/rsa.asc | tlmgr key add -
 
 RUN luaotfload-tool -v -vvv -u
+
+# Install cpanm & missing latexindent dependencies
+RUN sudo curl -L http://cpanmin.us | perl - --self-upgrade \
+    && cpanm Log::Dispatch::File YAML::Tiny File::HomeDir
 
 # USER ${USER}
 # WORKDIR /home/${USER}
