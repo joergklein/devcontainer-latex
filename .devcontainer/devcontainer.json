@@ -1,21 +1,6 @@
 {
+  "remoteUser": "coder",
   "build": {
-    // Path is relative to the devcontainer.json file.
     "dockerfile": "Dockerfile"
-  },
-  "customizations": {
-    "vscode": {
-      "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
-      },
-      "extensions": [
-        // Add the IDs of extensions you want installed when the container is created.
-        "james-yu.latex-workshop",
-        "tecosaur.latex-utilities",
-        "yzhang.markdown-all-in-one",
-        "valentjn.vscode-ltex"
-      ]
-    }
-  },
-  "remoteUser": "coder"
+  }
 }
