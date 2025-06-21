@@ -7,33 +7,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     && rm -rf /var/lib/apt/lists/*
 
-# ARG USER=coder
-# RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
-#     && echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
-#     && chmod 0440 /etc/sudoers.d/${USER}
-
-ARG USERNAME=latex
-ARG USER_UID=1001
-ARG USER_GID=1000
-
-RUN if [ ${USERNAME} != "latex" ] && [ ${USERNAME} != "root" ]; \
-    then useradd --uid $USER_UID --gid $USER_GID -m $USERNAME -s $(which zsh) \
-    && echo $USERNAME ALL=(ALL) NOPASSWD:ALL >/etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/${USERNAME} \
-    else echo "No new user created"; fi
-
-RUN if [ ${USERNAME} != "latex" ] && [ ${USERNAME} != "root" ]; \
-    then mkdir -p /home/${USERNAME}/.vscode-server/extensions \
-    && mkdir -p /root/.vscode-server/extensions \
-    && chown -R ${USERNAME} /home/${USERNAME}/.vscode-server; fi
-
-# RUN if [ ${USERNAME} != "latex" ] && [ ${USERNAME} != "root" ]; \
-#     then SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
-#     && mkdir -p /commandhistory \
-#     && touch /commandhistory/.bash_history \
-#     && chown -R $USERNAME /commandhistory \
-#     && echo $SNIPPET >> "/home/${USERNAME}/.bashrc" \
-#     && echo $SNIPPET >> "/root/.bashrc"; fi
+ARG USER=coder
+RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
+    && echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
+    && chmod 0440 /etc/sudoers.d/${USER}
 
 # Install texlive
 COPY texlive.profile .
@@ -60,5 +37,7 @@ RUN luaotfload-tool -v -vvv -u
 # USER ${USER}
 # WORKDIR /home/${USER}
 
-USER latex
+USER coder
 WORKDIR /home/coder/workspace
+
+CMD ["bash"]
