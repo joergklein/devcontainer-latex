@@ -1,5 +1,5 @@
 {
-  "remoteUser": "coder", // ensure this matches the Dockerfile
+  "remoteUser": "${USER}", // ensure this matches the Dockerfile
   "build": {
     // Path is relative to the devcontainer.json file.
     "dockerfile": "Dockerfile"
