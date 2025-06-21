@@ -19,7 +19,7 @@ ARG USER_GID=1000
 RUN if [ ${USERNAME} != "latex" ] && [ ${USERNAME} != "root" ]; \
     then useradd --uid $USER_UID --gid $USER_GID -m $USERNAME -s $(which zsh) \
     && echo $USERNAME ALL=(ALL) NOPASSWD:ALL >/etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/${USERNAME}
+    && chmod 0440 /etc/sudoers.d/${USERNAME} \
     else echo "No new user created"; fi
 
 RUN if [ ${USERNAME} != "latex" ] && [ ${USERNAME} != "root" ]; \
