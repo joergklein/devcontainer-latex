@@ -40,4 +40,4 @@ RUN luaotfload-tool -v -vvv -u
 USER coder
 WORKDIR /home/coder/workspace
 
-CMD ["bash"]
+CMD ["zsh"]
