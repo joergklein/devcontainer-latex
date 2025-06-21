@@ -4,138 +4,29 @@
     // Path is relative to the devcontainer.json file.
     "dockerfile": "Dockerfile"
   },
+  "mounts": [
+    "source=latex_vscode_extentions,target=/root/.vscode-server/extensions,type=volume",
+    "source=latex_vscode_extentions,target=/home/vscode/.vscode-server/extensions,type=volume",
+    "source=letex_vscode_bashhistory,target=/commandhistory,type=volume"
+  ],
   "customizations": {
     "vscode": {
-      "extensions": [
-        "james-yu.latex-workshop"
-      ],
       "settings": {
-        "latex-workshop.intellisense.citation.backend": "biblatex",
-        "latex-workshop.latex.autoBuild.run": "never",
-        "latex-workshop.view.pdf.viewer": "tab",
-        "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
-        "files.autoSave": "afterDelay",
-        "files.autoSaveDelay": 30000,
-        "latex-workshop.latex.recipes": [
-          {
-            "name": "Lualatex",
-            "tools": [
-              "lualatex",
-              "lualatex",
-              "lualatex",
-              "lualatex"
-            ]
-          },
-          {
-            "name": "Lualatex with glossaries",
-            "tools": [
-              "lualatex",
-              "biber",
-              "makeglossaries",
-              "lualatex",
-              "lualatex",
-              "lualatex"
-            ]
-          },
-          {
-            "name": "Lualatex without glossaries",
-            "tools": [
-              "lualatex",
-              "biber",
-              "lualatex",
-              "lualatex",
-              "lualatex"
-            ]
-          }
-        ],
-        "latex-workshop.latex.tools": [
-          {
-            "name": "lualatex",
-            "command": "lualatex",
-            "args": [
-              "-shell-escape",
-              "-synctex=1",
-              "-interaction=nonstopmode",
-              "-file-line-error",
-              "-pdf",
-              "%DOC%"
-            ]
-          },
-          {
-            "name": "biber",
-            "command": "biber",
-            "args": [
-              "%DOCFILE%"
-            ]
-          },
-          {
-            "name": "makeglossaries",
-            "command": "makeglossaries",
-            "args": [
-              "%DOCFILE%"
-            ]
-          }
-        ],
-        "latex-workshop.latex.clean.method": "glob",
-        "latex-workshop.latex.autoClean.run": "onBuilt",
-        "latex-workshop.latex.clean.fileTypes": [
-          "%DOCFILE%.aux",
-          "%DOCFILE%.bbl",
-          "%DOCFILE%.blg",
-          "%DOCFILE%.idx",
-          "%DOCFILE%.ilg",
-          "%DOCFILE%.ind",
-          "%DOCFILE%.lof",
-          "%DOCFILE%.log",
-          "%DOCFILE%.lol",
-          "%DOCFILE%.lot",
-          "%DOCFILE%.out",
-          "%DOCFILE%.toc",
-          "%DOCFILE%.acn",
-          "%DOCFILE%.acr",
-          "%DOCFILE%.alg",
-          "%DOCFILE%.glg",
-          "%DOCFILE%.glo",
-          "%DOCFILE%.gls",
-          "%DOCFILE%.fls",
-          "%DOCFILE%.log",
-          "%DOCFILE%.fdb_latexmk",
-          "%DOCFILE%.snm",
-          "%DOCFILE%.synctex(busy)",
-          "%DOCFILE%.synctex.gz(busy)",
-          "%DOCFILE%.nav",
-          "%DOCFILE%.vrb",
-          "%DOCFILE%.abb",
-          "%DOCFILE%.abrn",
-          "%DOCFILE%.bcf",
-          "%DOCFILE%.dvi",
-          "%DOCFILE%.ist",
-          "%DOCFILE%.nom",
-          "%DOCFILE%.ntn",
-          "%DOCFILE%.run.xml",
-          "%DOCFILE%.synctex.gz"
-        ],
-        "files.trimTrailingWhitespace": true,
-        "editor.minimap.enabled": false,
-        "editor.detectIndentation": true,
-        "editor.formatOnSave": true,
-        "workbench.startupEditor": "none",
-        "cSpell.language": "en,de,de-DE,en-US",
-        "[markdown]": {
-          "editor.defaultFormatter": "yzhang.markdown-all-in-one"
-        },
-        "workbench.editorAssociations": {
-          "*.pdf": "latex-workshop-pdf-hook"
-        },
-        "diffEditor.ignoreTrimWhitespace": false,
-        "diffEditor.hideUnchangedRegions.enabled": true,
-        "cSpell.userWords": [],
-        "latex-workshop.formatting.latex": "latexindent",
-        "[latex]": {
-          "editor.formatOnPaste": false,
-          "editor.suggestSelection": "recentlyUsedByPrefix"
-        }
-      }
+        "terminal.integrated.shell.linux": "/bin/bash"
+      },
+      "extensions": [
+        // Add the IDs of extensions you want installed when the container is created.
+        "james-yu.latex-workshop",
+        "tecosaur.latex-utilities",
+        "yzhang.markdown-all-in-one",
+        "valentjn.vscode-ltex"
+      ]
     }
-  }
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // Uncomment when using a ptrace-based debugger like C++, Go, and Rust
+  // "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "latex"
 }
