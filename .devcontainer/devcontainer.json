@@ -1,7 +1,15 @@
 {
-  "remoteUser": "${USER}", // ensure this matches the Dockerfile
+  "remoteUser": "coder", // ensure this matches the Dockerfile
   "build": {
     // Path is relative to the devcontainer.json file.
     "dockerfile": "Dockerfile"
-  }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "james-yu.latex-workshop"
+      ]
+    }
+  },
+  "postCreateCommand": "sed -i 's/\r$//' .devcontainer/misc/*.sh;sh .devcontainer/misc/initialize.sh"
 }
