@@ -7,6 +7,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     && rm -rf /var/lib/apt/lists/*
 
+# Install cpanm & missing latexindent dependencies
+# RUN sudo curl -L http://cpanmin.us | perl - --self-upgrade \
+#     && cpanm Log::Dispatch::File YAML::Tiny File::HomeDir
+
 ARG USER=coder
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
     && echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
@@ -33,10 +37,6 @@ RUN tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcon
     && sudo curl -fsSL https://www.preining.info/rsa.asc | tlmgr key add -
 
 RUN luaotfload-tool -v -vvv -u
-
-# Install cpanm & missing latexindent dependencies
-RUN sudo curl -L http://cpanmin.us | perl - --self-upgrade \
-    && cpanm Log::Dispatch::File YAML::Tiny File::HomeDir
 
 # USER ${USER}
 # WORKDIR /home/${USER}
