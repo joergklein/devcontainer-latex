@@ -27,13 +27,13 @@ RUN if [ ${USERNAME} != "latex" ] && [ ${USERNAME} != "root" ]; \
     && mkdir -p /root/.vscode-server/extensions \
     && chown -R ${USERNAME} /home/${USERNAME}/.vscode-server; fi
 
-RUN if [ ${USERNAME} != "latex" ] && [ ${USERNAME} != "root" ]; \
-    then SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
-    && mkdir -p /commandhistory \
-    && touch /commandhistory/.bash_history \
-    && chown -R $USERNAME /commandhistory \
-    && echo $SNIPPET >> "/home/${USERNAME}/.bashrc" \
-    && echo $SNIPPET >> "/root/.bashrc"; fi
+# RUN if [ ${USERNAME} != "latex" ] && [ ${USERNAME} != "root" ]; \
+#     then SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
+#     && mkdir -p /commandhistory \
+#     && touch /commandhistory/.bash_history \
+#     && chown -R $USERNAME /commandhistory \
+#     && echo $SNIPPET >> "/home/${USERNAME}/.bashrc" \
+#     && echo $SNIPPET >> "/root/.bashrc"; fi
 
 # Install texlive
 COPY texlive.profile .
