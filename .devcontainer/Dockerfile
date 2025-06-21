@@ -13,8 +13,8 @@ RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
     && chmod 0440 /etc/sudoers.d/${USER}
 
 # installing cpanm & missing latexindent dependencies
-RUN sudo curl -L http://cpanmin.us | perl - --self-upgrade && \
-    cpanm Log::Dispatch::File YAML::Tiny File::HomeDir
+RUN sudo curl -L http://cpanmin.us | perl - --self-upgrade \
+    && cpanm Log::Dispatch::File YAML::Tiny File::HomeDir
 
 # Install texlive
 COPY texlive.profile .
