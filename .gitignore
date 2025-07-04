@@ -1,0 +1,54 @@
+# idea folder
+.idea/
+
+# Inkscape Folder
+svg-inkscape/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+
+# LaTeX temporary files
+*.aux
+*.bcf
+*.idx
+*.ild
+*.ils
+*.ilg
+*.fls
+*.glg
+*.glo
+*.gls
+*.ind
+*.lof
+*.log
+*.lol
+*.lot
+*.run.xml
+*.toc
+
+# Latexmk
+*.fdb_latexmk
+
+# SyncTeX
+*.synctex.gz
+
+# LaTeX Beamer
+*.snm
+*.vrb
+*.nav
+*.out
+
+# BibTeX
+*.bbl
+*.blg

@@ -1,0 +1,10 @@
+.devcontainer
+.dockerignore
+.editorconfig
+.git
+.gitattributes
+.gitignore
+.vscode
+Dockerfile
+LICENSE
+*.md
