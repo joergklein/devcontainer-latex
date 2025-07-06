@@ -1,9 +1,9 @@
 ## Latex development container for VS-Code Desktop/Code-Server in Coder
 
 Coder is an open source platform for creating and managing cloud development environments on your infrastructure and deploying cloud development environments via Terraform that supports Linux, macOS, Windows, X86, ARM, Kubernetes and more. More information can be found here: https://coder.com.
+
 ## Help needed
 
-- Please take a look at the Dockerfile and docker-compose.yaml. Are they correct?
 - The extensions and settings should be installed in **code-server** by default. The settings.json and extensions.json in .vscode should be used.
 - The project folders should not only be saved in the container, but also on the hard disk so that the data are not lost when the container is restarted or reinstalled.
 
@@ -15,7 +15,7 @@ Thanks for the help
 
 ## Quickstart
 
-Please read first my [Coder installation guide](install.md) in this repository.
+Please read first my [Coder installation guide](INSTALL.md) in this repository.
 
 1. Visit https://github.com/joergklein/devcontainer-latex
 1. Login in coder

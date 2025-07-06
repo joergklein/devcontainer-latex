@@ -1,16 +1,12 @@
 # TeX Live Image
+# syntax=docker/dockerfile:1
 FROM mcr.microsoft.com/devcontainers/base:latest
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-utils \
     inkscape \
-    libnsl2
-
-RUN curl -L http://cpanmin.us | perl - App::cpanminus \
-    && cpanm Log::Dispatch::File \
-    && cpanm YAML::Tiny \
-    && cpanm File::HomeDir \
-    && cpanm Unicode::GCString
+    libnsl2 \
+    libyaml-tiny-perl
 
 RUN apt-get autoremove -y \
     && apt-get clean -y \
